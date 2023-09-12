@@ -23,6 +23,7 @@ export function App() {
       </div>
 
       <main className="flex-1 p-6 flex gap-6">
+        {/* Textareas */}
         <div className="flex flex-col flex-1 gap-4">
           <div className="grid grid-rows-2 gap-4 flex-1">
             <Textarea
@@ -31,7 +32,7 @@ export function App() {
             />
             <Textarea
               className="resize-none p-4 leading-relaxed"
-              placeholder="Resulto gerado pela IA."
+              placeholder="Resulto gerado pela IA..."
               readOnly
             />
           </div>
@@ -40,8 +41,15 @@ export function App() {
           </p>
         </div>
 
-        <aside className="w-80">
+        {/* Sidebar */}
+        <aside className="w-80 space-y-6">
+          <form className="space-y-6">
+            <label htmlFor="video" className="border flex rounded-md aspect-video cursor-pointer border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground ">
+              Carregar Video
+            </label>
 
+            <input type="file" id="video" accept="video/mp4" className="sr-only"/>
+          </form>
         </aside>
       </main>
     </div>
