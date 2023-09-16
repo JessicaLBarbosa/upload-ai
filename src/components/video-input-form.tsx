@@ -17,7 +17,12 @@ const statusMessages = {
     success: 'Sucesso!',
 }
 
-export function VideoInputForm() {
+interface VideoInputFormProps {
+    onVideoUploaded: (id: string) => void
+}
+
+
+export function VideoInputForm(props: VideoInputFormProps) {
 
     const [videoFile, setVideoFile] = useState<File | null>(null)
     const [status, setStatus] = useState<Status>('waiting')
@@ -99,6 +104,7 @@ export function VideoInputForm() {
 
         //Finished
         setStatus('success')
+        props.onVideoUploaded(videoId)
     }
 
     const previewURL = useMemo(() => {
@@ -143,9 +149,11 @@ export function VideoInputForm() {
 
             <Button
                 data-success={status === 'success'}
+                data-converting={status === 'converting'}
+                data-generating={status === 'generating'}
                 disabled={status !== 'waiting'}
                 type="submit"
-                className="w-full data-[success=true]:bg-emerald-400"
+                className="w-full data-[success=true]:bg-emerald-500 data-[converting=true]:bg-orange-600 data-[generating=true]:bg-yellow-500"
             >
                 {status === 'waiting' ? (
                     <>
